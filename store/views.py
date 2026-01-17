@@ -21,8 +21,11 @@ def store_home (req, category_slug=None):
     return render(req, 'store/store.html', context)
 
 def product_detail(request, category_slug, product_slug):
-    single_product = Product.objects.get(slug=product_slug)
-    print(single_product.product_name)
+    try :
+        single_product = Product.objects.get(slug=product_slug)
+    except Exception as e:
+        return e
+    
     context = {
         'single_product':single_product
     }
