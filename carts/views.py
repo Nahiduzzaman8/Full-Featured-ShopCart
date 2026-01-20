@@ -38,6 +38,7 @@ def add_cart (request, product_id):
 def cart (request):
     cartitems = CartItem.objects.all()
     no_of_cartitems = cartitems.count()
+    
     context = {
         'cartitmes':cartitems,
         'no_of_cartitems' : no_of_cartitems
