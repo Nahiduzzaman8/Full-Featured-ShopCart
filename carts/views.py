@@ -35,13 +35,17 @@ def add_cart (request, product_id):
 
 
 
-def cart (request):
-    cartitems = CartItem.objects.all()
-    no_of_cartitems = cartitems.count()
+def cart (request, total = 0, quantity= 0):
+    try :
+        cart = Cart.objects.filter(cart_id=_cart_id(request))
+        cart_items = CartItem.objects.filter(cart = cart, is_active= True)
+        # https://www.youtube.com/watch?v=1qg9OwrmGaw&t=2417s 4:12:18
+    
+    except Exception as e:
+        pass
     
     context = {
-        'cartitmes':cartitems,
-        'no_of_cartitems' : no_of_cartitems
+
     }
 
     return render(request, 'store/cart.html', context)
